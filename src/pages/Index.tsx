@@ -145,7 +145,7 @@ This is your story, born from your image and shaped by your imagination.`;
           <div className="text-center mb-12">
             <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4 animate-story-float">
               <span className="bg-gradient-story bg-clip-text text-transparent">
-                Image Tales Weaver
+                VisuaLux
               </span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
