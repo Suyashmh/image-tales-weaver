@@ -99,15 +99,22 @@ This is your story, born from your image and shaped by your imagination.`;
   };
 
   const handleTranslate = async (language: string) => {
+    if (!story) {
+      toast({
+        title: "No story to translate",
+        description: "Please generate a story first",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsTranslating(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      const translatedStory = `[Translated to ${language}]
-
-Your story has been magically translated while preserving its emotional essence and narrative flow. The tale maintains its original charm and wonder, now accessible in your preferred language.
-
-Every nuance of the original story has been carefully preserved, ensuring that the magic and meaning shine through in this new linguistic form. The warmth and adventure of your tale remain intact, ready to be enjoyed in ${language}.`;
+      // In a real implementation, this would call a translation API
+      // For demo purposes, we're simulating translation by adding a language prefix
+      const translatedStory = `[Translated to ${language}]\n\n${story}`;
       
       setStory(translatedStory);
       toast({
