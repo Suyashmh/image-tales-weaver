@@ -46,16 +46,50 @@ const Index = () => {
 
     setIsGenerating(true);
     try {
-      // Simulate AI story generation
+      // Simulate AI story generation with varied stories
       await new Promise(resolve => setTimeout(resolve, 3000));
       
-      const sampleStory = `In a realm where golden sunlight danced through ancient trees, a mysterious figure emerged from the shadows. The image before them told a tale of adventure and wonder, where every detail held the promise of an extraordinary journey.
-
-The warm orange glow cast magical shadows that seemed to whisper secrets of forgotten times. As the protagonist stepped forward, they discovered that this moment would change everything they thought they knew about their world.
-
-What started as an ordinary day had transformed into the beginning of an epic adventure, filled with mystery, courage, and the kind of magic that only exists when one truly believes in the power of stories.`;
+      // Create a simple hash from image data to generate varied stories
+      const imageHash = uploadedImage.split('').reduce((a, b) => {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a;
+      }, 0);
       
-      setStory(sampleStory);
+      const sampleStories = [
+        `In a world painted with vibrant colors, an unexpected discovery awaited. The image revealed a story of courage and determination, where every shadow held secrets and every light promised hope.
+
+As the gentle breeze carried whispers of ancient tales, the hero of this story realized that their journey was just beginning. The path ahead was filled with wonder, challenges that would test their spirit, and moments of pure magic.
+
+This was more than just a moment captured in time—it was the doorway to an extraordinary adventure that would change everything.`,
+
+        `Deep in the heart of an enchanted realm, where dreams take shape and reality bends, a remarkable tale unfolded. The scene before them was alive with possibility, each detail weaving together to create something truly magical.
+
+The air shimmered with untold stories, and the protagonist felt the pull of destiny calling them forward. What they discovered in this moment would become the foundation of legends, a story that would be told for generations.
+
+Every element in this image spoke of transformation, of ordinary moments becoming extraordinary through the power of belief and wonder.`,
+
+        `In the quiet beauty of this captured moment, a story of hope and discovery began to unfold. The landscape held memories of countless adventures, and now it was time for a new chapter to begin.
+
+The soft light danced across the scene, revealing hidden details that spoke of mystery and enchantment. Our hero stood at the threshold of something magnificent, ready to embrace whatever magic awaited them.
+
+This image was more than a picture—it was a portal to a world where anything was possible, where dreams came alive and stories wrote themselves.`,
+
+        `Beneath the surface of this seemingly ordinary moment lay an extraordinary tale waiting to be told. The image pulsed with energy, each corner hiding clues to a grand adventure about to unfold.
+
+The protagonist felt the weight of destiny settling around them like a comfortable cloak. This was the beginning of something special—a journey that would test their limits and reveal strength they never knew they possessed.
+
+In this magical realm where reality and fantasy intertwined, every step forward promised new wonders and every choice would shape the story yet to come.`,
+
+        `Lost in the beauty of this mystical scene, a wanderer discovered that some stories choose their heroes rather than the other way around. The image seemed to pulse with ancient magic, calling out to those brave enough to listen.
+
+The atmosphere was thick with possibility, where even the smallest details held the power to change everything. Our protagonist realized they were standing at the crossroads of fate and free will.
+
+This was the moment where ordinary became extraordinary, where a simple image transformed into the opening chapter of an epic tale that would span worlds and touch hearts.`
+      ];
+      
+      const selectedStory = sampleStories[Math.abs(imageHash) % sampleStories.length];
+      setStory(selectedStory);
+      
       toast({
         title: "Story generated!",
         description: "Your magical tale is ready",
