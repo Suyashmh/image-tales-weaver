@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -51,6 +52,12 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				story: {
+					amber: 'hsl(var(--story-amber))',
+					orange: 'hsl(var(--story-orange))',
+					warmth: 'hsl(var(--story-warmth))',
+					glow: 'hsl(var(--story-glow))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -84,11 +91,50 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'story-glow': {
+					'0%, 100%': {
+						opacity: '1',
+						transform: 'scale(1)'
+					},
+					'50%': {
+						opacity: '0.8',
+						transform: 'scale(1.02)'
+					}
+				},
+				'story-float': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-8px)'
+					}
+				},
+				'story-shimmer': {
+					'0%': {
+						backgroundPosition: '-200% 0'
+					},
+					'100%': {
+						backgroundPosition: '200% 0'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'story-glow': 'story-glow 3s ease-in-out infinite',
+				'story-float': 'story-float 4s ease-in-out infinite',
+				'story-shimmer': 'story-shimmer 2s linear infinite'
+			},
+			backgroundImage: {
+				'gradient-story': 'var(--gradient-story)',
+				'gradient-warmth': 'var(--gradient-warmth)',
+				'gradient-primary': 'var(--gradient-primary)'
+			},
+			boxShadow: {
+				'story': 'var(--shadow-story)',
+				'glow': 'var(--shadow-glow)',
+				'warm': 'var(--shadow-warm)'
 			}
 		}
 	},
