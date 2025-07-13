@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card';
 import { ImageUpload } from '@/components/ImageUpload';
 import { StoryDisplay } from '@/components/StoryDisplay';
 import { CustomizeDialog } from '@/components/CustomizeDialog';
-import { TranslateDialog } from '@/components/TranslateDialog';
+
 import { toast } from '@/hooks/use-toast';
 import { Wand2, BookOpen, Sparkles, RefreshCw } from 'lucide-react';
 import heroImage from '@/assets/hero-stories.jpg';
@@ -14,7 +14,7 @@ const Index = () => {
   const [story, setStory] = useState<string>('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [isCustomizing, setIsCustomizing] = useState(false);
-  const [isTranslating, setIsTranslating] = useState(false);
+  
 
   const handleImageUpload = (file: File) => {
     const reader = new FileReader();
@@ -98,39 +98,6 @@ This is your story, born from your image and shaped by your imagination.`;
     }
   };
 
-  const handleTranslate = async (language: string) => {
-    if (!story) {
-      toast({
-        title: "No story to translate",
-        description: "Please generate a story first",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsTranslating(true);
-    try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // In a real implementation, this would call a translation API
-      // For demo purposes, we're simulating translation by adding a language prefix
-      const translatedStory = `[Translated to ${language}]\n\n${story}`;
-      
-      setStory(translatedStory);
-      toast({
-        title: "Story translated!",
-        description: `Your tale is now in ${language}`,
-      });
-    } catch (error) {
-      toast({
-        title: "Translation failed",
-        description: "Please try again",
-        variant: "destructive",
-      });
-    } finally {
-      setIsTranslating(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-warmth">
@@ -209,10 +176,6 @@ This is your story, born from your image and shaped by your imagination.`;
                       <CustomizeDialog
                         onCustomize={handleCustomize}
                         isCustomizing={isCustomizing}
-                      />
-                      <TranslateDialog
-                        onTranslate={handleTranslate}
-                        isTranslating={isTranslating}
                       />
                       <Button
                         onClick={generateStory}
